@@ -8,7 +8,19 @@ html,body{margin:0;height:100%;font-family:Arial;background-size:cover;backgroun
     background: rgba(0,0,0,0.45);
     box-sizing: border-box;
 }
-.box{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);padding:30px;border-radius:18px;color:#fff;width:min(90%,650px);text-align:center}
+.box {
+    background: rgba(255,255,255,.15);
+    backdrop-filter: blur(8px);
+    color: white;
+
+    width: 90%;
+    max-width: 600px;
+
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
 input{width:90%;padding:12px;font-size:18px;border-radius:8px;border:none}
 button{margin-top:15px;padding:12px 30px;font-size:18px;border:none;border-radius:8px;cursor:pointer}
 .progress{height:18px;background:#ffffff55;border-radius:9px;overflow:hidden}
