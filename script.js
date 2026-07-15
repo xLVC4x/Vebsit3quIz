@@ -49,9 +49,15 @@ const fragen = [
     },
     {
         titel: "Frage 9",
-        frage: "9",
-        antwort: "9",
+        frage: "Anni:\nFrage?",
+        antwort: "Anni",
         hintergrund: "bilder/bild9.jpg"
+    },
+    {
+        titel: "Frage 10",
+        frage: "10",
+        antwort: "10",
+        hintergrund: "bilder/bild10.jpg"
     }
 ];
 
