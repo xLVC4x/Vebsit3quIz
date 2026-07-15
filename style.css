@@ -1,0 +1,7 @@
+html,body{margin:0;height:100%;font-family:Arial;background-size:cover;background-position:center}
+.overlay{display:flex;justify-content:center;align-items:center;height:100%;background:rgba(0,0,0,.45)}
+.box{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);padding:30px;border-radius:18px;color:#fff;width:min(90%,650px);text-align:center}
+input{width:90%;padding:12px;font-size:18px;border-radius:8px;border:none}
+button{margin-top:15px;padding:12px 30px;font-size:18px;border:none;border-radius:8px;cursor:pointer}
+.progress{height:18px;background:#ffffff55;border-radius:9px;overflow:hidden}
+#bar{height:100%;width:0;background:linear-gradient(90deg,#00ff88,#00aaff);transition:.4s}
