@@ -1,127 +1,92 @@
-html,
-body {
-    margin: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* Hintergrund */
-.overlay {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end; /* Immer unten */
-    min-height: 100vh;
-    padding: 15px;
-    box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.35);
-}
-
-/* Quiz-Box */
-.box {
-    width: min(600px, 100%);
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
-    color: white;
-    border-radius: 25px 25px 0 0;
-
-    padding: 20px;
-
-    box-sizing: border-box;
-
-    /* Nur so groß wie nötig */
-    height: auto;
-}
-
-/* Überschrift */
-h1 {
-    margin: 0 0 10px;
-    font-size: 32px;
-}
-
-/* Frage */
-h2 {
-    margin: 20px 0;
-    font-size: 24px;
-    font-weight: normal;
-}
-
-/* Fortschrittsbalken */
-.progress {
-    width: 100%;
-    height: 18px;
-    background: rgba(255,255,255,.25);
-    border-radius: 20px;
-    overflow: hidden;
-    margin: 10px 0;
-}
-
-#bar {
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg,#d40020,#000000,#dee0de);
-    transition: width .4s;
-}
-
-#count {
-    margin: 10px 0 20px;
-}
-
-/* Eingabe */
-input {
-    width: 100%;
-    padding: 14px;
-    font-size: 18px;
-    border: none;
-    border-radius: 10px;
-    box-sizing: border-box;
-}
-
-/* Button */
-button {
-    width: 100%;
-    margin-top: 15px;
-    padding: 14px;
-    font-size: 18px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-/* Fehlermeldung */
-#msg {
-    min-height: 25px;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-/* Handy */
-@media (max-width:768px){
-
-    .overlay{
-        padding:0;
+const fragen = [
+    {
+        titel: "Frage 1",
+        frage: "Luca:\nWo sind wir auf dem Bild?",
+        antwort: "csd",
+        hintergrund: "bilder/bild1.jpg"
+    },
+    {
+        titel: "Frage 2",
+        frage: "Wer ist hier gesucht?",
+        antwort: "mila",
+        hintergrund: "bilder/bild2.jpg"
+    },
+    {
+        titel: "Frage 3",
+        frage: "Ann:\nFrage?",
+        antwort: "Ann",
+        hintergrund: "bilder/bild3.jpg"
+    },
+    {
+        titel: "Frage 4",
+        frage: "Timo:\nMag ich lieber Kuchen oder Torte?",
+        antwort: "beides",
+        hintergrund: "bilder/bild4.jpg"
+    },
+    {
+        titel: "Frage 5",
+        frage: "Lilli:\nAuf welchem Festival in welchem Jahr haben wir uns kennengelernt?",
+        antwort: "Wacken 2017",
+        hintergrund: "bilder/bild5.jpg"
+    },
+    {
+        titel: "Frage 6",
+        frage: "6",
+        antwort: "6",
+        hintergrund: "bilder/bild6.jpg"
     }
+];
 
-    .box{
-        width:100%;
-        border-radius:25px 25px 0 0;
-        padding:18px;
-    }
+const finalBild = "bilder/final.jpg";
 
-    h1{
-        font-size:26px;
-    }
+let i = 0;
 
-    h2{
-        font-size:20px;
-    }
+function laden() {
+    const f = fragen[i];
 
-    input,
-    button{
-        font-size:17px;
+    document.body.style.backgroundImage = `url("${f.hintergrund}")`;
+
+    titel.textContent = f.titel;
+    frage.textContent = f.frage;
+    antwort.value = "";
+    msg.textContent = "";
+
+    count.textContent = `Frage ${i + 1} von ${fragen.length}`;
+    bar.style.width = `${((i + 1) / fragen.length) * 100}%`;
+}
+
+function pruefen() {
+    const eingegebeneAntwort = antwort.value.trim().toLowerCase();
+    const richtigeAntwort = fragen[i].antwort.trim().toLowerCase();
+
+    if (eingegebeneAntwort === richtigeAntwort) {
+        antwort.blur();
+        i++;
+
+        if (i >= fragen.length) {
+            document.body.style.backgroundImage = `url("${finalBild}")`;
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundRepeat = "no-repeat";
+
+            document.querySelector(".box").innerHTML = `
+                <h1>🎉 Geschafft!</h1>
+                <p>Alle Fragen richtig beantwortet.</p>
+            `;
+
+            return;
+        }
+
+        laden();
+    } else {
+        msg.textContent = "❌ Falsche Antwort";
     }
 }
+
+antwort.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        pruefen();
+    }
+});
+
+laden();
