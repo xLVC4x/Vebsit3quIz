@@ -1,8 +1,8 @@
 const fragen=[
-{titel:"Frage 1",frage:"Wo sind wir auf dem Bild?",antwort:"csd",hintergrund:"bilder/bild1.jpg"},
-{titel:"Frage 2",frage:"Mila?",antwort:"mila",hintergrund:"bilder/bild2.jpg"},
-{titel:"Frage 3",frage:"3?",antwort:"3",hintergrund:"bilder/bild3.jpg"},
-{titel:"Frage 4",frage:"4?",antwort:"4",hintergrund:"bilder/bild4.jpg"},
+{titel:"Frage 1",frage:"Luca: /n Wo sind wir auf dem Bild?",antwort:"csd",hintergrund:"bilder/bild1.jpg"},
+{titel:"Frage 2",frage:"Mila: /n Frage?",antwort:"mila",hintergrund:"bilder/bild2.jpg"},
+{titel:"Frage 3",frage:"Ann: /n Frage?",antwort:"Ann",hintergrund:"bilder/bild3.jpg"},
+{titel:"Frage 4",frage:"Timo: /n Mag ich lieber Kuchen oder Torte?",antwort:"Beides",hintergrund:"bilder/bild4.jpg"},
 {titel:"Frage 5",frage:"5?",antwort:"5",hintergrund:"bilder/bild5.jpg"}
 ];
 let i=0;
