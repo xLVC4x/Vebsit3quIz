@@ -31,9 +31,15 @@ const fragen = [
     },
     {
         titel: "Frage 6",
-        frage: "6",
-        antwort: "6",
+        frage: "Niklas:\nWie viel Bier kann ich saufen?",
+        antwort: "Ja",
         hintergrund: "bilder/bild6.jpg"
+    },
+    {
+        titel: "Frage 7",
+        frage: "7",
+        antwort: "7",
+        hintergrund: "bilder/bild7.jpg"
     }
 ];
 
