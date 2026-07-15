@@ -1,57 +1,127 @@
-html,body{margin:0;height:100%;font-family:Arial;background-size:cover;background-position:center}
+html,
+body {
+    margin: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Hintergrund */
 .overlay {
     display: flex;
-    justify-content: center;   /* Horizontal mittig */
-    align-items: flex-end;      /* Unten ausrichten */
-    height: 100vh;
-    padding-bottom: 2px;       /* Abstand zum unteren Rand */
-    background: rgba(0,0,0,0.45);
+    justify-content: center;
+    align-items: flex-end; /* Immer unten */
+    min-height: 100vh;
+    padding: 15px;
     box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.35);
 }
+
+/* Quiz-Box */
 .box {
-    background: rgba(255,255,255,.15);
-    backdrop-filter: blur(8px);
+    width: min(600px, 100%);
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
     color: white;
+    border-radius: 25px 25px 0 0;
 
-    width: 90%;
-    max-width: 600px;
+    padding: 20px;
 
-    padding: 25px;
+    box-sizing: border-box;
+
+    /* Nur so groß wie nötig */
+    height: auto;
+}
+
+/* Überschrift */
+h1 {
+    margin: 0 0 10px;
+    font-size: 32px;
+}
+
+/* Frage */
+h2 {
+    margin: 20px 0;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+/* Fortschrittsbalken */
+.progress {
+    width: 100%;
+    height: 18px;
+    background: rgba(255,255,255,.25);
     border-radius: 20px;
-    text-align: center;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+#bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg,#00ff88,#00aaff);
+    transition: width .4s;
+}
+
+#count {
+    margin: 10px 0 20px;
+}
+
+/* Eingabe */
+input {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
     box-sizing: border-box;
 }
-input{width:90%;padding:12px;font-size:18px;border-radius:8px;border:none}
-button{margin-top:15px;padding:12px 30px;font-size:18px;border:none;border-radius:8px;cursor:pointer}
-.progress{height:18px;background:#ffffff55;border-radius:9px;overflow:hidden}
-#bar{height:100%;width:0;background:linear-gradient(90deg,#00ff88,#00aaff);transition:.4s}
-/* Smartphones */
-@media (max-width: 768px) {
 
-    .box {
-        width: 95%;
-        padding: 18px;
-        border-radius: 15px;
+/* Button */
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Fehlermeldung */
+#msg {
+    min-height: 25px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Handy */
+@media (max-width:768px){
+
+    .overlay{
+        padding:0;
     }
 
-    h1 {
-        font-size: 28px;
+    .box{
+        width:100%;
+        border-radius:25px 25px 0 0;
+        padding:18px;
     }
 
-    h2 {
-        font-size: 22px;
+    h1{
+        font-size:26px;
     }
 
-    input {
-        width: 100%;
-        font-size: 18px;
-        padding: 14px;
-        box-sizing: border-box;
+    h2{
+        font-size:20px;
     }
 
-    button {
-        width: 100%;
-        font-size: 18px;
-        padding: 14px;
+    input,
+    button{
+        font-size:17px;
     }
 }
