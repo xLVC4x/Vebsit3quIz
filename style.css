@@ -25,3 +25,33 @@ input{width:90%;padding:12px;font-size:18px;border-radius:8px;border:none}
 button{margin-top:15px;padding:12px 30px;font-size:18px;border:none;border-radius:8px;cursor:pointer}
 .progress{height:18px;background:#ffffff55;border-radius:9px;overflow:hidden}
 #bar{height:100%;width:0;background:linear-gradient(90deg,#00ff88,#00aaff);transition:.4s}
+/* Smartphones */
+@media (max-width: 768px) {
+
+    .box {
+        width: 95%;
+        padding: 18px;
+        border-radius: 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    input {
+        width: 100%;
+        font-size: 18px;
+        padding: 14px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 100%;
+        font-size: 18px;
+        padding: 14px;
+    }
+}
