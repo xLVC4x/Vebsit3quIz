@@ -37,9 +37,21 @@ const fragen = [
     },
     {
         titel: "Frage 7",
-        frage: "7",
-        antwort: "7",
+        frage: "Nico:\nIst die Stimme ein Instrument?",
+        antwort: "Nein",
         hintergrund: "bilder/bild7.jpg"
+    },
+    {
+        titel: "Frage 8",
+        frage: "Clari:\nWer hatte an dem Abend das gleiche Kleid an?",
+        antwort: "Marcel",
+        hintergrund: "bilder/bild8.jpg"
+    },
+    {
+        titel: "Frage 9",
+        frage: "9",
+        antwort: "9",
+        hintergrund: "bilder/bild9.jpg"
     }
 ];
 
