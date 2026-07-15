@@ -16,7 +16,6 @@ antwort.value="";
 msg.textContent="";
 count.textContent=`Frage ${i+1} von ${fragen.length}`;
 bar.style.width=((i+1)/fragen.length*100)+"%";
-antwort.focus();
 }
 function pruefen(){
 if(antwort.value.trim().toLowerCase()===fragen[i].antwort.toLowerCase()){
