@@ -1,5 +1,13 @@
 html,body{margin:0;height:100%;font-family:Arial;background-size:cover;background-position:center}
-.overlay{display:flex;justify-content:center;align-items:center;height:100%;background:rgba(0,0,0,.45)}
+..overlay {
+    display: flex;
+    justify-content: center;   /* Horizontal mittig */
+    align-items: flex-end;      /* Unten ausrichten */
+    height: 100vh;
+    padding-bottom: 80px;       /* Abstand zum unteren Rand */
+    background: rgba(0,0,0,0.45);
+    box-sizing: border-box;
+}
 .box{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);padding:30px;border-radius:18px;color:#fff;width:min(90%,650px);text-align:center}
 input{width:90%;padding:12px;font-size:18px;border-radius:8px;border:none}
 button{margin-top:15px;padding:12px 30px;font-size:18px;border:none;border-radius:8px;cursor:pointer}
