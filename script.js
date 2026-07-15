@@ -22,7 +22,7 @@ if(antwort.value.trim().toLowerCase()===fragen[i].antwort.toLowerCase()){
 i++;
 if(i>=fragen.length){
 document.querySelector('.box').innerHTML='<h1>🎉 Geschafft!</h1><p>Alle Fragen richtig beantwortet.</p>';
-document.body.style.backgroundImage='none';
+document.body.style.backgroundImage="bilder/final.jpg";
 return;
 }
 laden();
