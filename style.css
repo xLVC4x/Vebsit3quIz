@@ -16,7 +16,7 @@ body {
     min-height: 100vh;
     padding: 15px;
     box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.11);
+    background: rgba(0, 0, 0, 0.35);
 }
 
 /* Quiz-Box */
@@ -63,7 +63,7 @@ h2 {
 #bar {
     height: 100%;
     width: 0;
-    background: linear-gradient(90deg,#00ff88,#00aaff);
+    background: linear-gradient(90deg,#d40020,#000000,#dee0de);
     transition: width .4s;
 }
 
