@@ -4,7 +4,7 @@ html,body{margin:0;height:100%;font-family:Arial;background-size:cover;backgroun
     justify-content: center;   /* Horizontal mittig */
     align-items: flex-end;      /* Unten ausrichten */
     height: 100vh;
-    padding-bottom: 80px;       /* Abstand zum unteren Rand */
+    padding-bottom: 2px;       /* Abstand zum unteren Rand */
     background: rgba(0,0,0,0.45);
     box-sizing: border-box;
 }
