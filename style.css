@@ -1,5 +1,5 @@
 html,body{margin:0;height:100%;font-family:Arial;background-size:cover;background-position:center}
-..overlay {
+.overlay {
     display: flex;
     justify-content: center;   /* Horizontal mittig */
     align-items: flex-end;      /* Unten ausrichten */
