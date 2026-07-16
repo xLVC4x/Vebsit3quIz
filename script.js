@@ -13,8 +13,8 @@ const fragen = [
     },
     {
         titel: "Frage 3",
-        frage: "Ann:\nFrage?",
-        antwort: "Ann",
+        frage: "Ann:\nWie wird mein kompletter Vorname richtig geschrieben ?",
+        antwort: "Anyamani",
         hintergrund: "bilder/bild3.jpg"
     },
     {
