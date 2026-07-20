@@ -209,7 +209,6 @@ bubble.style.top = y + "px";
 
                     ende.innerHTML = `
                         <h1>🎉 Du hast es geschafft ❤️</h1>
-                        <p>Danke, dass du mein Quiz gespielt hast.</p>
                     `;
 
                     document.body.appendChild(ende);
