@@ -103,7 +103,6 @@ antwort.addEventListener("keydown", function (event) {
         pruefen();
     }
 });
-const finalBild = "bilder/final.jpg";
 
 const bubbles = [
     "❤️ Ich liebe dich",
