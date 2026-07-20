@@ -88,15 +88,7 @@ function pruefen() {
         i++;
 
         if (i >= fragen.length) {
-            document.body.style.backgroundImage = `url("${finalBild}")`;
-            document.body.style.backgroundSize = "cover";
-            document.body.style.backgroundPosition = "center";
-            document.body.style.backgroundRepeat = "no-repeat";
-
-            document.querySelector(".box").innerHTML = `
-                <h1>🎉 Alles Gute zum Geburzelag</h1>
-            `;
-
+           zeigeFinale();
             return;
         }
 
@@ -113,3 +105,103 @@ antwort.addEventListener("keydown", function (event) {
 });
 
 laden();
+
+const finalBild = "bilder/final.jpg";
+
+const bubbles = [
+    "❤️ Ich liebe dich",
+    "🌸 Unser erstes Date",
+    "🎵 Unser Lied",
+    "🏕️ Wacken 2017",
+    "🌈 CSD",
+    "💋 Unser erster Kuss",
+    "✨ Lieblingsmensch",
+    "🫶 Danke",
+    "❤️ Für immer",
+    "🌍 Noch viele Abenteuer"
+];
+
+function zeigeFinale() {
+
+    document.body.style.backgroundImage = `url("${finalBild}")`;
+
+    document.querySelector(".overlay").style.background = "rgba(0,0,0,.15)";
+
+    document.querySelector(".box").remove();
+
+    const container = document.createElement("div");
+    container.id = "bubbleContainer";
+    document.body.appendChild(container);
+
+    let uebrig = bubbles.length;
+
+    bubbles.forEach(text => {
+
+        const bubble = document.createElement("div");
+
+        bubble.className = "bubble";
+        bubble.textContent = text;
+
+        bubble.style.left = Math.random() * (window.innerWidth - 180) + "px";
+        bubble.style.top = Math.random() * (window.innerHeight - 100) + "px";
+
+        let dx = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? -1 : 1);
+        let dy = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? -1 : 1);
+
+        function bewegen() {
+
+            let x = bubble.offsetLeft;
+            let y = bubble.offsetTop;
+
+            x += dx;
+            y += dy;
+
+            if (x <= 0 || x >= window.innerWidth - bubble.offsetWidth)
+                dx *= -1;
+
+            if (y <= 0 || y >= window.innerHeight - bubble.offsetHeight)
+                dy *= -1;
+
+            bubble.style.left = x + "px";
+            bubble.style.top = y + "px";
+
+            if (document.body.contains(bubble))
+                requestAnimationFrame(bewegen);
+        }
+
+        bewegen();
+
+        bubble.onclick = () => {
+
+            bubble.classList.add("pop");
+
+            setTimeout(() => {
+
+                bubble.remove();
+
+                uebrig--;
+
+                if (uebrig === 0) {
+
+                    const ende = document.createElement("div");
+
+                    ende.id = "finalText";
+
+                    ende.innerHTML = `
+                        <h1>🎉 Du hast es geschafft ❤️</h1>
+                        <p>Danke, dass du mein Quiz gespielt hast.</p>
+                    `;
+
+                    document.body.appendChild(ende);
+
+                }
+
+            },300);
+
+        };
+
+        container.appendChild(bubble);
+
+    });
+
+}
