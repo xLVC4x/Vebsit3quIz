@@ -55,8 +55,8 @@ const fragen = [
     },
     {
         titel: "Frage 10",
-        frage: "10",
-        antwort: "10",
+        frage: "FredMiri:\n Welche zwei Einkäufe vor ihrem ersten Wacken, hat Darleen noch auf dem Festival bitter bereut?",
+        antwort: "Stiege Ravioli und Stiege purer Äppler",
         hintergrund: "bilder/bild10.jpg"
     }
 ];
