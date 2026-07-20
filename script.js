@@ -106,15 +106,25 @@ antwort.addEventListener("keydown", function (event) {
 
 const bubbles = [
     "❤️ Wir Lieben dich",
-    "🌸 ",
     "🤘 Parity 🤘",
     "🏕️ Wacken 🏕️",
     "🌈 CSD 🌈",
-    "",
-    "",
-    "🫶Danke",
-    "Bleib Gesund",
-    "🎲 Auf noch Viele Abenteuer 🎲"
+    "🫰Stays🫰",
+    "🫶Danke für alles",
+    "💪Werde und Bleib Gesund💪",
+    "🎲 Auf noch Viele Abenteuer 🎲",
+    "Ann",
+    "Anni",
+    "Timo",
+    "Sunni",
+    "Lilli",
+    "Niklas",
+    "Nico",
+    "Mila",
+    "Miri",
+    "Fred",
+    "Clari",
+    "Luca"
 ];
 
 function zeigeFinale() {
