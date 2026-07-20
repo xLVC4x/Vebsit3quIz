@@ -103,9 +103,6 @@ antwort.addEventListener("keydown", function (event) {
         pruefen();
     }
 });
-
-laden();
-
 const finalBild = "bilder/final.jpg";
 
 const bubbles = [
@@ -205,3 +202,5 @@ function zeigeFinale() {
     });
 
 }
+
+laden();
