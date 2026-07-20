@@ -159,17 +159,31 @@ function zeigeFinale() {
             let x = bubble.offsetLeft;
             let y = bubble.offsetTop;
 
-            x += dx;
-            y += dy;
+           x += dx;
+y += dy;
 
-            if (x <= 0 || x >= window.innerWidth - bubble.offsetWidth)
-                dx *= -1;
+if (x < 0) {
+    x = 0;
+    dx *= -1;
+}
 
-            if (y <= 0 || y >= window.innerHeight - bubble.offsetHeight)
-                dy *= -1;
+if (x > window.innerWidth - bubble.offsetWidth) {
+    x = window.innerWidth - bubble.offsetWidth;
+    dx *= -1;
+}
 
-            bubble.style.left = x + "px";
-            bubble.style.top = y + "px";
+if (y < 0) {
+    y = 0;
+    dy *= -1;
+}
+
+if (y > window.innerHeight - bubble.offsetHeight) {
+    y = window.innerHeight - bubble.offsetHeight;
+    dy *= -1;
+}
+
+bubble.style.left = x + "px";
+bubble.style.top = y + "px";
 
             if (document.body.contains(bubble))
                 requestAnimationFrame(bewegen);
