@@ -94,8 +94,7 @@ function pruefen() {
             document.body.style.backgroundRepeat = "no-repeat";
 
             document.querySelector(".box").innerHTML = `
-                <h1>🎉 Geschafft!</h1>
-                <p>Alle Fragen richtig beantwortet.</p>
+                <h1>🎉 Alles Gute zum Geburzelag</h1>
             `;
 
             return;
