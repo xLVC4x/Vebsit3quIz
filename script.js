@@ -105,16 +105,16 @@ antwort.addEventListener("keydown", function (event) {
 });
 
 const bubbles = [
-    "❤️ Ich liebe dich",
-    "🌸 Unser erstes Date",
-    "🎵 Unser Lied",
-    "🏕️ Wacken 2017",
-    "🌈 CSD",
-    "💋 Unser erster Kuss",
-    "✨ Lieblingsmensch",
-    "🫶 Danke",
-    "❤️ Für immer",
-    "🌍 Noch viele Abenteuer"
+    "❤️ Wir Lieben dich",
+    "🌸 ",
+    "🤘 Parity 🤘",
+    "🏕️ Wacken 🏕️",
+    "🌈 CSD 🌈",
+    "",
+    "",
+    "🫶Danke",
+    "Bleib Gesund",
+    "🎲 Auf noch Viele Abenteuer 🎲"
 ];
 
 function zeigeFinale() {
@@ -164,7 +164,7 @@ function zeigeFinale() {
             if (document.body.contains(bubble))
                 requestAnimationFrame(bewegen);
         }
-
+	container.appendChild(bubble);
         bewegen();
 
         bubble.onclick = () => {
@@ -195,9 +195,7 @@ function zeigeFinale() {
             },300);
 
         };
-
-        container.appendChild(bubble);
-
+	
     });
 
 }
