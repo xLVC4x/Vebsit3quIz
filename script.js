@@ -70,6 +70,12 @@ const fragen = [
         frage: "Sabbie:\n Wo haben wir uns kennengelernt? Hanau, Offenbach, Frankfurt, Rodgau.",
         antwort: "Hanau",
         hintergrund: "bilder/bild12.jpg"
+    },
+	{
+        titel: "Frage 13",
+        frage: "NicoNiesie:\n Wie viele Mordreds braucht man bis zum Mond?",
+        antwort: "363300000",
+        hintergrund: "bilder/bild13.jpg"
     }
 ];
 
