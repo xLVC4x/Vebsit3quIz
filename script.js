@@ -64,6 +64,12 @@ const fragen = [
         frage: "Fiona:\n was esse ich am liebsten?",
         antwort: "Lachs",
         hintergrund: "bilder/bild11.jpg"
+    },
+	{
+        titel: "Frage 12",
+        frage: "Sabbie:\n Wo haben wir uns kennengelernt? Hanau, Offenbach, Frankfurt, Rodgau.",
+        antwort: "Hanau",
+        hintergrund: "bilder/bild12.jpg"
     }
 ];
 
