@@ -259,7 +259,29 @@ const bubbleGruppen = [
         "... 77 ...",
         "... 78 ...",
         "... 79 ...",
-        "... 70 ...",
+        "... 80 ...",
+	],
+	[
+	"... 81 ...",
+        "... 82 ...",
+        "... 83 ...",
+        "... 84 ...",
+        "... 85 ...",
+        "... 86 ...",
+        "... 87 ...",
+        "... 88 ...",
+        "... 89 ...",
+        "... 90 ...",
+        "... 91 ...",
+        "... 92 ...",
+        "... 93 ...",
+        "... 94 ...",
+        "... 95 ...",
+        "... 96 ...",
+        "... 97 ...",
+        "... 98 ...",
+        "... 99 ...",
+        "... 100 ...",
 	]
 ];
 
@@ -289,271 +311,236 @@ function zeigeFinale() {
      * Speichert, wie viele Bubbles aus jeder Gruppe
      * derzeit sichtbar und noch nicht geplatzt sind.
      */
-    const uebrig = [0, 0, 0];
+    const uebrig = new Array(bubbleGruppen.length).fill(0);
 
-    /*
-     * Verhindert, dass eine Gruppe mehrfach gestartet wird.
-     */
-    const gruppeGestartet = [false, false, false];
+/*
+ * Verhindert, dass eine Gruppe mehrfach gestartet wird.
+ */
+const gruppeGestartet = new Array(bubbleGruppen.length).fill(false);
 
-    /*
-     * Zeigt an, ob alle Bubbles einer Gruppe bereits
-     * erzeugt wurden.
-     */
-    const gruppeVollstaendigGespawnt = [false, false, false];
+/*
+ * Zeigt an, ob alle Bubbles einer Gruppe bereits
+ * erzeugt wurden.
+ */
+const gruppeVollstaendigGespawnt = new Array(bubbleGruppen.length).fill(false);
 
-    /*
-     * Erstellt eine einzelne Bubble.
-     */
-    function bubbleErstellen(text, gruppenIndex) {
-        const bubble = document.createElement("div");
+/*
+ * Erstellt eine einzelne Bubble.
+ */
+function bubbleErstellen(text, gruppenIndex) {
 
-        bubble.className = "bubble";
-        bubble.textContent = text;
+    const bubble = document.createElement("div");
 
-        /*
-         * Die Bubble muss zuerst eingefügt werden,
-         * damit offsetWidth und offsetHeight bekannt sind.
-         */
-        container.appendChild(bubble);
+    bubble.className = "bubble";
+    bubble.textContent = text;
 
-        const maximaleXPosition = Math.max(
-            0,
-            window.innerWidth - bubble.offsetWidth
-        );
+    container.appendChild(bubble);
 
-        const maximaleYPosition = Math.max(
-            0,
-            window.innerHeight - bubble.offsetHeight
-        );
+    const maximaleXPosition = Math.max(
+        0,
+        window.innerWidth - bubble.offsetWidth
+    );
 
-        let x = Math.random() * maximaleXPosition;
-        let y = Math.random() * maximaleYPosition;
+    const maximaleYPosition = Math.max(
+        0,
+        window.innerHeight - bubble.offsetHeight
+    );
 
-        /*
-         * Geschwindigkeit zwischen ungefähr 1 und 2,5 Pixeln.
-         */
-        let dx =
-            (Math.random() * 1.5 + 1) *
-            (Math.random() < 0.5 ? -1 : 1);
+    let x = Math.random() * maximaleXPosition;
+    let y = Math.random() * maximaleYPosition;
 
-        let dy =
-            (Math.random() * 1.5 + 1) *
-            (Math.random() < 0.5 ? -1 : 1);
+    let dx =
+        (Math.random() * 1.5 + 1) *
+        (Math.random() < 0.5 ? -1 : 1);
+
+    let dy =
+        (Math.random() * 1.5 + 1) *
+        (Math.random() < 0.5 ? -1 : 1);
+
+    bubble.style.left = `${x}px`;
+    bubble.style.top = `${y}px`;
+
+    uebrig[gruppenIndex]++;
+
+    let aktiv = true;
+
+    function bewegen() {
+
+        if (!aktiv || !bubble.isConnected) {
+            return;
+        }
+
+        x += dx;
+        y += dy;
+
+        const maxX =
+            window.innerWidth - bubble.offsetWidth;
+
+        const maxY =
+            window.innerHeight - bubble.offsetHeight;
+
+        if (x < 0) {
+            x = 0;
+            dx = Math.abs(dx);
+        }
+
+        if (x > maxX) {
+            x = maxX;
+            dx = -Math.abs(dx);
+        }
+
+        if (y < 0) {
+            y = 0;
+            dy = Math.abs(dy);
+        }
+
+        if (y > maxY) {
+            y = maxY;
+            dy = -Math.abs(dy);
+        }
 
         bubble.style.left = `${x}px`;
         bubble.style.top = `${y}px`;
 
-        uebrig[gruppenIndex]++;
-
-        let aktiv = true;
-
-        function bewegen() {
-            if (!aktiv || !bubble.isConnected) {
-                return;
-            }
-
-            x += dx;
-            y += dy;
-
-            const maxX = Math.max(
-                0,
-                window.innerWidth - bubble.offsetWidth
-            );
-
-            const maxY = Math.max(
-                0,
-                window.innerHeight - bubble.offsetHeight
-            );
-
-            /*
-             * Linker Rand
-             */
-            if (x < 0) {
-                x = 0;
-                dx = Math.abs(dx);
-            }
-
-            /*
-             * Rechter Rand
-             */
-            if (x > maxX) {
-                x = maxX;
-                dx = -Math.abs(dx);
-            }
-
-            /*
-             * Oberer Rand
-             */
-            if (y < 0) {
-                y = 0;
-                dy = Math.abs(dy);
-            }
-
-            /*
-             * Unterer Rand
-             */
-            if (y > maxY) {
-                y = maxY;
-                dy = -Math.abs(dy);
-            }
-
-            bubble.style.left = `${x}px`;
-            bubble.style.top = `${y}px`;
-
-            requestAnimationFrame(bewegen);
-        }
-
-        bewegen();
-
-        bubble.addEventListener(
-            "click",
-            function () {
-                /*
-                 * Verhindert mehrfaches Anklicken derselben Bubble.
-                 */
-                if (!aktiv) {
-                    return;
-                }
-
-                aktiv = false;
-                bubble.classList.add("pop");
-
-                uebrig[gruppenIndex]--;
-
-                /*
-                 * Gruppe 2 starten, wenn Gruppe 1
-                 * nur noch vier Bubbles hat.
-                 */
-                if (
-                    gruppenIndex === 0 &&
-                    uebrig[0] <= 4 &&
-                    !gruppeGestartet[1]
-                ) {
-                    gruppeStarten(1, 500);
-                }
-
-                /*
-                 * Gruppe 3 erst starten, wenn:
-                 *
-                 * 1. Gruppe 2 vollständig gespawnt wurde
-                 * 2. nur noch vier Bubbles aus Gruppe 2 übrig sind
-                 */
-                if (
-                    gruppenIndex === 1 &&
-                    gruppeVollstaendigGespawnt[1] &&
-                    uebrig[1] <= 4 &&
-                    !gruppeGestartet[2]
-                ) {
-                    gruppeStarten(2, 500);
-                }
-
-                setTimeout(function () {
-                    bubble.remove();
-                    finalePruefen();
-                }, 300);
-            },
-            { once: true }
-        );
+        requestAnimationFrame(bewegen);
     }
 
-    /*
-     * Startet eine vollständige Bubble-Gruppe.
-     *
-     * Bei Gruppe 1 ist der Abstand 0:
-     * Alle Bubbles erscheinen sofort.
-     *
-     * Bei Gruppe 2 und 3 beträgt der Abstand 500 ms.
-     */
-    function gruppeStarten(gruppenIndex, spawnAbstand) {
-        if (gruppeGestartet[gruppenIndex]) {
+    bewegen();
+
+    bubble.addEventListener("click", function () {
+
+        if (!aktiv) {
             return;
         }
 
-        gruppeGestartet[gruppenIndex] = true;
+        aktiv = false;
 
-        const texte = bubbleGruppen[gruppenIndex];
+        bubble.classList.add("pop");
 
-        if (spawnAbstand === 0) {
-            texte.forEach(function (text) {
-                bubbleErstellen(text, gruppenIndex);
-            });
+        uebrig[gruppenIndex]--;
 
-            gruppeVollstaendigGespawnt[gruppenIndex] = true;
-            return;
-        }
-
-        texte.forEach(function (text, index) {
-            setTimeout(function () {
-                bubbleErstellen(text, gruppenIndex);
-
-                /*
-                 * Beim letzten Eintrag ist die Gruppe
-                 * vollständig gespawnt.
-                 */
-                if (index === texte.length - 1) {
-                    gruppeVollstaendigGespawnt[gruppenIndex] = true;
-
-                    /*
-                     * Falls beim langsamen Spawnen der zweiten Gruppe
-                     * bereits Bubbles geplatzt wurden, prüfen wir sofort,
-                     * ob Gruppe 3 gestartet werden darf.
-                     */
-                    if (
-                        gruppenIndex === 1 &&
-                        uebrig[1] <= 4 &&
-                        !gruppeGestartet[2]
-                    ) {
-                        gruppeStarten(2, 500);
-                    }
-
-                    finalePruefen();
-                }
-            }, index * spawnAbstand);
-        });
-    }
-
-    /*
-     * Glückwunsch erst anzeigen, wenn:
-     *
-     * - Gruppe 3 vollständig gespawnt wurde
-     * - in allen drei Gruppen keine Bubble mehr übrig ist
-     */
-    function finalePruefen() {
-        const alleBubblesGeplatzt =
-            uebrig[0] === 0 &&
-            uebrig[1] === 0 &&
-            uebrig[2] === 0;
+        const naechsteGruppe = gruppenIndex + 1;
 
         if (
-            gruppeVollstaendigGespawnt[2] &&
-            alleBubblesGeplatzt
+            naechsteGruppe < bubbleGruppen.length &&
+            gruppeVollstaendigGespawnt[gruppenIndex] &&
+            uebrig[gruppenIndex] <= 4 &&
+            !gruppeGestartet[naechsteGruppe]
         ) {
-            glueckwunschAnzeigen();
-        }
-    }
-
-    function glueckwunschAnzeigen() {
-        if (document.querySelector("#finalText")) {
-            return;
+            gruppeStarten(naechsteGruppe, 500);
         }
 
-        const ende = document.createElement("div");
-        ende.id = "finalText";
+        setTimeout(function () {
 
-        ende.innerHTML = `
-            <div class="finalTextBox">
-                <h1>🎉 Du hast es geschafft ❤️</h1>
-            </div>
-        `;
+            bubble.remove();
 
-        document.body.appendChild(ende);
+            finalePruefen();
+
+        }, 300);
+
+    }, { once: true });
+
+}
+
+/*
+ * Startet eine Bubblegruppe.
+ */
+function gruppeStarten(gruppenIndex, spawnAbstand) {
+
+    if (gruppeGestartet[gruppenIndex]) {
+        return;
     }
 
-    /*
-     * Die erste Gruppe erscheint sofort.
-     */
-    gruppeStarten(0, 0);
+    gruppeGestartet[gruppenIndex] = true;
+
+    const texte = bubbleGruppen[gruppenIndex];
+
+    if (spawnAbstand === 0) {
+
+        texte.forEach(function (text) {
+
+            bubbleErstellen(text, gruppenIndex);
+
+        });
+
+        gruppeVollstaendigGespawnt[gruppenIndex] = true;
+
+        return;
+    }
+
+    texte.forEach(function (text, index) {
+
+        setTimeout(function () {
+
+            bubbleErstellen(text, gruppenIndex);
+
+            if (index === texte.length - 1) {
+
+                gruppeVollstaendigGespawnt[gruppenIndex] = true;
+
+                const naechsteGruppe = gruppenIndex + 1;
+
+                if (
+                    naechsteGruppe < bubbleGruppen.length &&
+                    uebrig[gruppenIndex] <= 4 &&
+                    !gruppeGestartet[naechsteGruppe]
+                ) {
+                    gruppeStarten(naechsteGruppe, 500);
+                }
+
+                finalePruefen();
+
+            }
+
+        }, index * spawnAbstand);
+
+    });
+
+}
+
+/*
+ * Prüft, ob alle Gruppen fertig sind.
+ */
+function finalePruefen() {
+
+    const alleBubblesGeplatzt =
+        uebrig.every(anzahl => anzahl === 0);
+
+    const alleGruppenFertig =
+        gruppeVollstaendigGespawnt.every(fertig => fertig);
+
+    if (alleGruppenFertig && alleBubblesGeplatzt) {
+
+        glueckwunschAnzeigen();
+
+    }
+
+}
+
+function glueckwunschAnzeigen() {
+
+    if (document.querySelector("#finalText")) {
+        return;
+    }
+
+    const ende = document.createElement("div");
+
+    ende.id = "finalText";
+
+    ende.innerHTML = `
+        <div class="finalTextBox">
+            <h1>🎉 Du hast es geschafft ❤️</h1>
+        </div>
+    `;
+
+    document.body.appendChild(ende);
+
+}
+
+/*
+ * Erste Gruppe sofort starten.
+ */
+gruppeStarten(0, 0);
 }
 
 laden();
