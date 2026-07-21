@@ -140,7 +140,7 @@ const bubbles = [
     "Ann",
     "Anni",
     "Timo",
-    "Sunni",
+    "Sunny",
     "Lilli",
     "Niklas",
     "Nico",
