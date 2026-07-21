@@ -143,7 +143,10 @@ const bubbles = [
     "Fred",
     "Clari",
     "Luca",
-	"Fiona"
+	"Fiona",
+	"NiesiesNico",
+	"Niesie",
+	"Sabbie"
 ];
 
 function zeigeFinale() {
