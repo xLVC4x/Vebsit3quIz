@@ -76,6 +76,12 @@ const fragen = [
         frage: "NicoNiesie:\n Wie viele Mordreds braucht man bis zum Mond?",
         antwort: "363300000",
         hintergrund: "bilder/bild13.jpg"
+    },
+	{
+        titel: "Frage 14",
+        frage: "Sunny:\n Was spiele ich hier genau?",
+        antwort: "Gitarre",
+        hintergrund: "bilder/bild14.jpg"
     }
 ];
 
