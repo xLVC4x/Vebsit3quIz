@@ -49,8 +49,8 @@ const fragen = [
     },
     {
         titel: "Frage 9",
-        frage: "Anni:\nFrage?",
-        antwort: "Anni",
+        frage: "Anni:\nWas ist mein Lieblings Avantasia Song, den ich immer noch nicht live gesehen habe?",
+        antwort: "In Quest For",
         hintergrund: "bilder/bild9.jpg"
     },
     {
@@ -286,7 +286,19 @@ const bubbleGruppen = [
 ];
 
 function zeigeFinale() {
-    document.body.style.backgroundImage = `url("${finalBild}")`;
+    const bg = document.createElement("div");
+    bg.id = "finalBackground";
+    bg.style.position = "fixed";
+    bg.style.inset = "0";
+    bg.style.zIndex = "-1";
+    bg.style.backgroundImage = `url("${finalBild}")`;
+    bg.style.backgroundSize = "cover";
+    bg.style.backgroundPosition = "center";
+    bg.style.backgroundRepeat = "no-repeat";
+    bg.style.filter = "blur(12px)";
+    bg.style.transition = "filter 1.5s ease";
+
+document.body.appendChild(bg);
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
     document.body.style.backgroundRepeat = "no-repeat";
@@ -518,6 +530,7 @@ function finalePruefen() {
 }
 
 function glueckwunschAnzeigen() {
+	document.getElementById("finalBackground").style.filter = "blur(0)";
 
     if (document.querySelector("#finalText")) {
         return;
