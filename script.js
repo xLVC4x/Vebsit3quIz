@@ -128,127 +128,432 @@ antwort.addEventListener("keydown", function (event) {
     }
 });
 
-const bubbles = [
-    "❤️ Wir Lieben dich",
-    "🤘 Parity 🤘",
-    "🏕️ Wacken 🏕️",
-    "🌈 CSD 🌈",
-    "🫰Stays🫰",
-    "🫶Danke für alles",
-    "💪Werde und Bleib Gesund💪",
-    "🎲 Auf noch Viele Abenteuer 🎲",
-    "Ann",
-    "Anni",
-    "Timo",
-    "Sunny",
-    "Lilli",
-    "Niklas",
-    "Nico",
-    "Mila",
-    "Miri",
-    "Fred",
-    "Clari",
-    "Luca",
-	"Fiona",
-	"NiesiesNico",
-	"Niesie",
-	"Sabbie"
+const bubbleGruppen = [
+	 [
+	    "❤️ Wir Lieben dich",
+	    "🤘 Parity 🤘",
+	    "🏕️ Wacken 🏕️",
+	    "🌈 CSD 🌈",
+	    "🫰Stays🫰",
+	    "🫶Danke für alles",
+	    "💪Werde und Bleib Gesund💪",
+	    "🎲 Auf noch Viele Abenteuer 🎲",
+	    "Ann",
+	    "Anni",
+	    "Timo",
+	    "Sunny",
+	    "Lilli",
+	    "Niklas",
+	    "Nico",
+	    "Mila",
+	    "Miri",
+	    "Fred",
+	    "Clari",
+	    "Luca",
+		"Fiona",
+		"NiesiesNico",
+		"Niesie",
+		"Sabbie"
+	],
+	[
+        "Also Eigentlich...",
+        "...hat Sunni gesagt...",
+        "...Mach das doch nicht..",
+        "... und ich so 😄...",
+        "...Ja also das wäre vllt wirklich zuviel...",
+        "...aber.... aber ... aber..",
+        "... als ob Sunni die Webseite ausprobiert...",
+        ".... Das müsste Ihr dann ja erstmal jemand stecken ... ",
+        "... das ich weitere Bubbles hinzugefügt habe...",
+        "... du fragst dich vielleicht...",
+        "...Luca wieviele bubbles hast du hinzugefügt..",
+        "... lass dir eins gesagt sein...",
+        "...GPT war nur für den code da...",
+        "... ich habe jede nachricht selber händisch eingetragen...",
+        "... während meine Bronchitis wieder richtig aufblüht...",
+        "... also viel spaß...",
+        "... 1 ...",
+    	],
+    	[
+        "... 2 ...",
+        "... 3 ...",
+        "... 4 ...",
+        "... 5 ...",
+        "... 6 ...",
+        "... 7 ...",
+        "... 8 ...",
+        "... 9 ...",
+        "... 10 ...",
+        "... 11 ...",
+        "... 12 ...",
+        "... 13 ...",
+        "... 14 ...",
+        "... 15 ...",
+        "... 16 ...",
+        "... 17 ...",
+        "... 18 ...",
+        "... 19 ...",
+        "... 20 ...",
+	],
+	[
+	"... 21 ...",
+        "... 22 ...",
+        "... 23 ...",
+        "... 24 ...",
+        "... 25 ...",
+        "... 26 ...",
+        "... 27 ...",
+        "... 28 ...",
+        "... 29 ...",
+        "... 30 ...",
+        "... 31 ...",
+        "... 32 ...",
+        "... 33 ...",
+        "... 34 ...",
+        "... 35 ...",
+        "... 36 ...",
+        "... 37 ...",
+        "... 38 ...",
+        "... 39 ...",
+        "... 40 ...",
+	],
+	[
+	"... 41 ...",
+        "... 42 ...",
+        "... 43 ...",
+        "... 44 ...",
+        "... 45 ...",
+        "... 46 ...",
+        "... 47 ...",
+        "... 48 ...",
+        "... 49 ...",
+        "... 50 ...",
+        "... 51 ...",
+        "... 52 ...",
+        "... 53 ...",
+        "... 54 ...",
+        "... 55 ...",
+        "... 56 ...",
+        "... 57 ...",
+        "... 58 ...",
+        "... 59 ...",
+        "... 60 ...",
+	],
+	[
+	"... 61 ...",
+        "... 62 ...",
+        "... 63 ...",
+        "... 64 ...",
+        "... 65 ...",
+        "... 66 ...",
+        "... 67 ...",
+        "... 68 ...",
+        "... 69 ...",
+        "... 70 ...",
+        "... 71 ...",
+        "... 72 ...",
+        "... 73 ...",
+        "... 74 ...",
+        "... 75 ...",
+        "... 76 ...",
+        "... 77 ...",
+        "... 78 ...",
+        "... 79 ...",
+        "... 70 ...",
+	]
 ];
 
 function zeigeFinale() {
-
     document.body.style.backgroundImage = `url("${finalBild}")`;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundRepeat = "no-repeat";
 
-    document.querySelector(".overlay").style.background = "rgba(0,0,0,.15)";
+    const overlay = document.querySelector(".overlay");
 
-    document.querySelector(".box").remove();
+    if (overlay) {
+        overlay.style.background = "transparent";
+    }
+
+    const box = document.querySelector(".box");
+
+    if (box) {
+        box.style.display = "none";
+    }
 
     const container = document.createElement("div");
     container.id = "bubbleContainer";
     document.body.appendChild(container);
 
-    let uebrig = bubbles.length;
+    /*
+     * Speichert, wie viele Bubbles aus jeder Gruppe
+     * derzeit sichtbar und noch nicht geplatzt sind.
+     */
+    const uebrig = [0, 0, 0];
 
-    bubbles.forEach(text => {
+    /*
+     * Verhindert, dass eine Gruppe mehrfach gestartet wird.
+     */
+    const gruppeGestartet = [false, false, false];
 
+    /*
+     * Zeigt an, ob alle Bubbles einer Gruppe bereits
+     * erzeugt wurden.
+     */
+    const gruppeVollstaendigGespawnt = [false, false, false];
+
+    /*
+     * Erstellt eine einzelne Bubble.
+     */
+    function bubbleErstellen(text, gruppenIndex) {
         const bubble = document.createElement("div");
 
         bubble.className = "bubble";
         bubble.textContent = text;
 
-        bubble.style.left = Math.random() * (window.innerWidth - 180) + "px";
-        bubble.style.top = Math.random() * (window.innerHeight - 100) + "px";
+        /*
+         * Die Bubble muss zuerst eingefügt werden,
+         * damit offsetWidth und offsetHeight bekannt sind.
+         */
+        container.appendChild(bubble);
 
-        let dx = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? -1 : 1);
-        let dy = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? -1 : 1);
+        const maximaleXPosition = Math.max(
+            0,
+            window.innerWidth - bubble.offsetWidth
+        );
+
+        const maximaleYPosition = Math.max(
+            0,
+            window.innerHeight - bubble.offsetHeight
+        );
+
+        let x = Math.random() * maximaleXPosition;
+        let y = Math.random() * maximaleYPosition;
+
+        /*
+         * Geschwindigkeit zwischen ungefähr 1 und 2,5 Pixeln.
+         */
+        let dx =
+            (Math.random() * 1.5 + 1) *
+            (Math.random() < 0.5 ? -1 : 1);
+
+        let dy =
+            (Math.random() * 1.5 + 1) *
+            (Math.random() < 0.5 ? -1 : 1);
+
+        bubble.style.left = `${x}px`;
+        bubble.style.top = `${y}px`;
+
+        uebrig[gruppenIndex]++;
+
+        let aktiv = true;
 
         function bewegen() {
+            if (!aktiv || !bubble.isConnected) {
+                return;
+            }
 
-            let x = bubble.offsetLeft;
-            let y = bubble.offsetTop;
+            x += dx;
+            y += dy;
 
-           x += dx;
-y += dy;
+            const maxX = Math.max(
+                0,
+                window.innerWidth - bubble.offsetWidth
+            );
 
-if (x < 0) {
-    x = 0;
-    dx *= -1;
-}
+            const maxY = Math.max(
+                0,
+                window.innerHeight - bubble.offsetHeight
+            );
 
-if (x > window.innerWidth - bubble.offsetWidth) {
-    x = window.innerWidth - bubble.offsetWidth;
-    dx *= -1;
-}
+            /*
+             * Linker Rand
+             */
+            if (x < 0) {
+                x = 0;
+                dx = Math.abs(dx);
+            }
 
-if (y < 0) {
-    y = 0;
-    dy *= -1;
-}
+            /*
+             * Rechter Rand
+             */
+            if (x > maxX) {
+                x = maxX;
+                dx = -Math.abs(dx);
+            }
 
-if (y > window.innerHeight - bubble.offsetHeight) {
-    y = window.innerHeight - bubble.offsetHeight;
-    dy *= -1;
-}
+            /*
+             * Oberer Rand
+             */
+            if (y < 0) {
+                y = 0;
+                dy = Math.abs(dy);
+            }
 
-bubble.style.left = x + "px";
-bubble.style.top = y + "px";
+            /*
+             * Unterer Rand
+             */
+            if (y > maxY) {
+                y = maxY;
+                dy = -Math.abs(dy);
+            }
 
-            if (document.body.contains(bubble))
-                requestAnimationFrame(bewegen);
+            bubble.style.left = `${x}px`;
+            bubble.style.top = `${y}px`;
+
+            requestAnimationFrame(bewegen);
         }
-	container.appendChild(bubble);
+
         bewegen();
 
-        bubble.onclick = () => {
-
-            bubble.classList.add("pop");
-
-            setTimeout(() => {
-
-                bubble.remove();
-
-                uebrig--;
-
-                if (uebrig === 0) {
-
-                    const ende = document.createElement("div");
-
-                    ende.id = "finalText";
-
-                    ende.innerHTML = `
-                        <h1>🎉 Du hast es geschafft ❤️</h1>
-                    `;
-
-                    document.body.appendChild(ende);
-
+        bubble.addEventListener(
+            "click",
+            function () {
+                /*
+                 * Verhindert mehrfaches Anklicken derselben Bubble.
+                 */
+                if (!aktiv) {
+                    return;
                 }
 
-            },300);
+                aktiv = false;
+                bubble.classList.add("pop");
 
-        };
-	
-    });
+                uebrig[gruppenIndex]--;
 
+                /*
+                 * Gruppe 2 starten, wenn Gruppe 1
+                 * nur noch vier Bubbles hat.
+                 */
+                if (
+                    gruppenIndex === 0 &&
+                    uebrig[0] <= 4 &&
+                    !gruppeGestartet[1]
+                ) {
+                    gruppeStarten(1, 500);
+                }
+
+                /*
+                 * Gruppe 3 erst starten, wenn:
+                 *
+                 * 1. Gruppe 2 vollständig gespawnt wurde
+                 * 2. nur noch vier Bubbles aus Gruppe 2 übrig sind
+                 */
+                if (
+                    gruppenIndex === 1 &&
+                    gruppeVollstaendigGespawnt[1] &&
+                    uebrig[1] <= 4 &&
+                    !gruppeGestartet[2]
+                ) {
+                    gruppeStarten(2, 500);
+                }
+
+                setTimeout(function () {
+                    bubble.remove();
+                    finalePruefen();
+                }, 300);
+            },
+            { once: true }
+        );
+    }
+
+    /*
+     * Startet eine vollständige Bubble-Gruppe.
+     *
+     * Bei Gruppe 1 ist der Abstand 0:
+     * Alle Bubbles erscheinen sofort.
+     *
+     * Bei Gruppe 2 und 3 beträgt der Abstand 500 ms.
+     */
+    function gruppeStarten(gruppenIndex, spawnAbstand) {
+        if (gruppeGestartet[gruppenIndex]) {
+            return;
+        }
+
+        gruppeGestartet[gruppenIndex] = true;
+
+        const texte = bubbleGruppen[gruppenIndex];
+
+        if (spawnAbstand === 0) {
+            texte.forEach(function (text) {
+                bubbleErstellen(text, gruppenIndex);
+            });
+
+            gruppeVollstaendigGespawnt[gruppenIndex] = true;
+            return;
+        }
+
+        texte.forEach(function (text, index) {
+            setTimeout(function () {
+                bubbleErstellen(text, gruppenIndex);
+
+                /*
+                 * Beim letzten Eintrag ist die Gruppe
+                 * vollständig gespawnt.
+                 */
+                if (index === texte.length - 1) {
+                    gruppeVollstaendigGespawnt[gruppenIndex] = true;
+
+                    /*
+                     * Falls beim langsamen Spawnen der zweiten Gruppe
+                     * bereits Bubbles geplatzt wurden, prüfen wir sofort,
+                     * ob Gruppe 3 gestartet werden darf.
+                     */
+                    if (
+                        gruppenIndex === 1 &&
+                        uebrig[1] <= 4 &&
+                        !gruppeGestartet[2]
+                    ) {
+                        gruppeStarten(2, 500);
+                    }
+
+                    finalePruefen();
+                }
+            }, index * spawnAbstand);
+        });
+    }
+
+    /*
+     * Glückwunsch erst anzeigen, wenn:
+     *
+     * - Gruppe 3 vollständig gespawnt wurde
+     * - in allen drei Gruppen keine Bubble mehr übrig ist
+     */
+    function finalePruefen() {
+        const alleBubblesGeplatzt =
+            uebrig[0] === 0 &&
+            uebrig[1] === 0 &&
+            uebrig[2] === 0;
+
+        if (
+            gruppeVollstaendigGespawnt[2] &&
+            alleBubblesGeplatzt
+        ) {
+            glueckwunschAnzeigen();
+        }
+    }
+
+    function glueckwunschAnzeigen() {
+        if (document.querySelector("#finalText")) {
+            return;
+        }
+
+        const ende = document.createElement("div");
+        ende.id = "finalText";
+
+        ende.innerHTML = `
+            <div class="finalTextBox">
+                <h1>🎉 Du hast es geschafft ❤️</h1>
+            </div>
+        `;
+
+        document.body.appendChild(ende);
+    }
+
+    /*
+     * Die erste Gruppe erscheint sofort.
+     */
+    gruppeStarten(0, 0);
 }
 
 laden();
