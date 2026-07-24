@@ -159,7 +159,10 @@ const bubbleGruppen = [
 		"Fiona",
 		"NiesiesNico",
 		"Niesie",
-		"Sabbie"
+		"Sabbie",
+		 "Timmi",
+		 "Tobi",
+		 "Lukas"
 	],
 	[
         "Also Eigentlich...",
