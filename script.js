@@ -1,8 +1,8 @@
 const fragen = [
     {
         titel: "Frage 1",
-        frage: "Luca:\nWo sind wir auf dem Bild?",
-        antwort: "csd",
+        frage: "Timmi:\nFrage?",
+        antwort: "Timmi",
         hintergrund: "bilder/bild1.jpg"
     },
     {
@@ -82,6 +82,12 @@ const fragen = [
         frage: "Sunny:\n Was spiele ich hier genau?",
         antwort: "Gitarre",
         hintergrund: "bilder/bild14.jpg"
+    },
+	{
+       	titel: "Frage 15",
+        frage: "Luca:\nWo sind wir auf dem Bild?",
+        antwort: "csd",
+        hintergrund: "bilder/bild15.jpg"
     }
 ];
 
